@@ -15,7 +15,7 @@ const ContactNavigatior = createStackNavigator(
     Contact: { screen: Contact },
   },
   {
-    defaultNavigationOptions: ({navigation}) => ({
+    defaultNavigationOptions: ({ navigation }) => ({
       headerStyle: {
         backgroundColor: "#5637DD",
       },
@@ -39,7 +39,7 @@ const AboutNavigator = createStackNavigator(
     About: { screen: About },
   },
   {
-    defaultNavigationOptions: ({navigation}) => ({
+    defaultNavigationOptions: ({ navigation }) => ({
       headerStyle: {
         backgroundColor: "#5637DD",
       },
@@ -95,7 +95,7 @@ const HomeNavigator = createStackNavigator(
     Home: { screen: Home },
   },
   {
-    defaultNavigationOptions: ({navigation}) => ({
+    defaultNavigationOptions: ({ navigation }) => ({
       headerStyle: {
         backgroundColor: "#5637DD",
       },
@@ -117,10 +117,52 @@ const HomeNavigator = createStackNavigator(
 
 const MainNavigator = createDrawerNavigator(
   {
-    Home: { screen: HomeNavigator },
-    Directory: { screen: DirectoryNavigator },
-    About: { screen: AboutNavigator },
-    Contact: { screen: ContactNavigatior },
+    Home: {
+      screen: HomeNavigator,
+      navigationOptions: {
+        drawerLabel: "Home",
+        drawerIcon: ({ tintColor }) => (
+          <Icon name="home" type="font-awesome" size={24} color={tintColor} />
+        ),
+      },
+    },
+    Directory: {
+      screen: DirectoryNavigator,
+      navigationOptions: {
+        drawerLabel: "Directory",
+        drawerIcon: ({ tintColor }) => (
+          <Icon name="list" type="font-awesome" size={24} color={tintColor} />
+        ),
+      },
+    },
+    About: {
+      screen: AboutNavigator,
+      navigationOptions: {
+        drawerLabel: "About us",
+        drawerIcon: ({ tintColor }) => (
+          <Icon
+            name="info-circle"
+            type="font-awesome"
+            size={24}
+            color={tintColor}
+          />
+        ),
+      },
+    },
+    Contact: {
+      screen: ContactNavigatior,
+      navigationOptions: {
+        drawerLabel: "Contact us",
+        drawerIcon: ({ tintColor }) => (
+          <Icon
+            name="address-card"
+            type="font-awesome"
+            size={24}
+            color={tintColor}
+          />
+        ),
+      },
+    },
   },
   {
     drawerBackgroundColor: "#CEC8FF",
@@ -148,9 +190,9 @@ class Main extends Component {
 const styles = StyleSheet.create({
   stackIcon: {
     marginLeft: 10,
-    color: '#fff',
-    fontSize: 24
-  }
-})
+    color: "#fff",
+    fontSize: 24,
+  },
+});
 
 export default Main;
