@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { ScrollView, Text, FlatList } from "react-native";
+import { View, Text, FlatList } from "react-native";
 import { Card, ListItem } from "react-native-elements";
 import { PARTNERS } from "../shared/partners";
 
@@ -26,6 +26,7 @@ class About extends Component {
       partners: PARTNERS,
     };
   }
+  
 
   static navigationOptions = {
     title: "About",
@@ -45,16 +46,16 @@ class About extends Component {
     };
 
     return (
-      <ScrollView>
+      <View>
         <Mission />
         <Card title="Community Partners">
           <FlatList
             data={this.state.partners}
-            keyExtractor={(item) => item.id.toString()}
             renderItem={renderPartner}
+            keyExtractor={(item) => item.id.toString()}
           ></FlatList>
         </Card>
-      </ScrollView>
+      </View>
     );
   }
 }
