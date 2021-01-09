@@ -9,7 +9,7 @@ export const fetchComments = () => (dispatch) => {
           return response;
         } else {
           const error = new Error(
-            `Error ${response.staus}: ${response.statusText}`
+            `Error ${response.status}: ${response.statusText}`
           );
           error.response = response;
           throw error;
