@@ -3,6 +3,7 @@ import { View, Text, FlatList } from "react-native";
 import { Card, ListItem } from "react-native-elements";
 import { connect } from "react-redux";
 import { baseUrl } from "../shared/baseUrl";
+import Loading from "./LoadingComponent";
 
 const mapStateToProps = (state) => {
   return {
@@ -38,11 +39,34 @@ class About extends Component {
           title={item.name}
           subtitle={item.description}
           leftAvatar={{
-            source: { uri: baseUrl + item.image }
+            source: { uri: baseUrl + item.image },
           }}
         />
       );
     };
+
+    if (this.props.partners.isLoading) {
+      return (
+        <View>
+          <Mission />
+          <Card title="Community Partners">
+            <Loading />
+          </Card>
+        </View>
+      );
+    }
+
+    if (this.props.partners.errMess) {
+      return (
+        <View>
+          <Mission />
+          <Card title="Community Partners">
+            <Text>{this.props.partners.errMess}</Text>
+          </Card>
+        </View>
+
+      )
+    }
 
     return (
       <View>
