@@ -179,7 +179,7 @@ const FavoritesNavigator = createStackNavigator(
       },
       headerLeft: (
         <Icon
-          name="heart-o"
+          name="heart"
           type="font-awesome"
           iconStyle={styles.stackIcon}
           onPress={() => navigation.toggleDrawer()}

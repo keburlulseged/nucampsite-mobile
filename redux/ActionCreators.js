@@ -1,6 +1,6 @@
 import * as ActionTypes from "./ActionTypes";
 import { baseUrl } from "../shared/baseUrl";
-import nextId from 'react-id-generator';
+import nextId from "react-id-generator";
 
 export const fetchComments = () => (dispatch) => {
   return fetch(baseUrl + "comments")
@@ -174,7 +174,7 @@ export const postComment = (campsiteId, rating, author, text) => (dispatch) => {
     author,
     text,
     date: new Date().toISOString(),
-    id: nextId()
+    id: nextId(),
   };
 
   setTimeout(() => {
@@ -184,5 +184,10 @@ export const postComment = (campsiteId, rating, author, text) => (dispatch) => {
 
 export const addComment = (comment) => ({
   type: ActionTypes.ADD_COMMENT,
-  payload: comment
-})
+  payload: comment,
+});
+
+export const deleteFavorite = (campsiteId) => ({
+  type: ActionTypes.DELETE_FAVORITE,
+  payload: campsiteId,
+});
