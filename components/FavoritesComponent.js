@@ -20,6 +20,7 @@ const mapDispatchToProps = {
 };
 
 class Favorites extends Component {
+  
   static navigationOptions = {
     title: "My Favorites",
   };
@@ -35,7 +36,7 @@ class Favorites extends Component {
               onPress={() =>
                 Alert.alert(
                   'Delete Favorite',
-                  'Are you sure you want to delete this ' + item.name + ' from your favorites?',
+                  'Are you sure you want to delete ' + item.name + ' from your favorites?',
                   [
                     {
                       text: 'Cancel',
