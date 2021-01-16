@@ -10,6 +10,7 @@ import {
   Modal,
 } from "react-native";
 import DateTimePicker from "@react-native-community/datetimepicker";
+import * as Animatable from "react-native-animatable";
 
 class Reservation extends Component {
   constructor(props) {
@@ -46,6 +47,7 @@ class Reservation extends Component {
   render() {
     return (
       <ScrollView>
+        <Animatable.View animation='zoomIn' duration={2000} delay={1000}>
 
         <View style={styles.formRow}>
           <Text style={styles.formLabel}>Number of Campers</Text>
@@ -53,7 +55,7 @@ class Reservation extends Component {
             style={styles.formItem}
             selectedValue={this.state.campers}
             onValueChange={(itemValue) => this.setState({ campers: itemValue })}
-          >
+            >
             <Picker.Item label="1" value="1" />
             <Picker.Item label="2" value="2" />
             <Picker.Item label="3" value="3" />
@@ -69,7 +71,7 @@ class Reservation extends Component {
             value={this.state.hikeIn}
             trackColor={{ true: "#5637DD", false: null }}
             onValueChange={(value) => this.setState({ hikeIn: value })}
-          />
+            />
         </View>
         <View style={styles.formRow}>
           <Text style={styles.formLabel}>Date</Text>
@@ -80,34 +82,34 @@ class Reservation extends Component {
             title={this.state.date.toLocaleDateString("en-US")}
             color="#5637DD"
             accessibilityLabel="Tap me to select a reservation date"
-          />
+            />
         </View>
         {this.state.showCalendar && (
           <DateTimePicker
-            value={this.state.date}
-            mode={"date"}
-            display="default"
-            onChange={(event, selectedDate) => {
-              selectedDate &&
-                this.setState({ date: selectedDate, showCalendar: false });
-            }}
-            style={styles.formItem}
+          value={this.state.date}
+          mode={"date"}
+          display="default"
+          onChange={(event, selectedDate) => {
+            selectedDate &&
+            this.setState({ date: selectedDate, showCalendar: false });
+          }}
+          style={styles.formItem}
           />
-        )}
+          )}
         <View style={styles.formRow}>
           <Button
             onPress={() => this.handleReservation()}
             title="Search"
             color="#5637DD"
             accessibilityLabel="Tap me to search for available campsites to reserve"
-          />
+            />
         </View>
         <Modal
           animationType={"slide"}
           transparent={false}
           visible={this.state.showModal}
           onRequestClose={() => this.toggleModal()}
-        >
+          >
           <View style={styles.modal}>
             <Text style={styles.modalTitle}>Search Campsite Reservations</Text>
             <Text style={styles.modalText}>
@@ -126,9 +128,10 @@ class Reservation extends Component {
               }}
               color="#5637DD"
               title="Close"
-            />
+              />
           </View>
         </Modal>
+      </Animatable.View>
       </ScrollView>
     );
   }
