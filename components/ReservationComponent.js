@@ -7,7 +7,7 @@ import {
   Picker,
   Switch,
   Button,
-  Alert
+  Alert,
 } from "react-native";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import * as Animatable from "react-native-animatable";
@@ -27,6 +27,30 @@ class Reservation extends Component {
 
   toggleModal() {
     this.setState({ showModal: !this.state.showModal });
+  }
+
+  handleReservation() {
+    Alert.alert(
+      "Begin Search...",
+      "Number of campers: " +
+        this.state.campers +
+        "\nHike-In: " +
+        (this.state.hikeIn ? "Yes" : "No") +
+        "\nDate: " +
+        this.state.date,
+      [
+        {
+          text: "Cancel",
+          style: "cancel",
+          onPress: () => this.resetForm(),
+        },
+        {
+          text: "OK",
+          onPress: () => this.resetForm(),
+        },
+      ],
+      { cancelable: false }
+    );
   }
 
   resetForm() {
@@ -94,26 +118,7 @@ class Reservation extends Component {
           )}
           <View style={styles.formRow}>
             <Button
-              onPress={() =>
-                Alert.alert(
-                  "Begin Search...",
-                  "Number of campers: " + this.state.campers +
-                  "\nHike-In: " + (this.state.hikeIn ? "Yes" : "No") +
-                  "\nDate: " + this.state.date,
-                  [
-                    {
-                      text: "Cancel",
-                      style: "cancel",
-                      onPress: () => this.resetForm(),
-                    },
-                    {
-                      text: "OK",
-                      onPress: () => this.resetForm(),
-                    },
-                  ],
-                  { cancelable: false }
-                )
-              }
+              onPress={() => this.handleReservation()}
               title="Search"
               color="#5637DD"
               accessibilityLabel="Tap me to search for available campsites to reserve"
