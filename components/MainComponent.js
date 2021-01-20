@@ -6,6 +6,7 @@ import Contact from "./ContactComponent";
 import About from "./AboutComponent";
 import Reservation from "./ReservationComponent";
 import Favorites from "./FavoritesComponent";
+import Login from "./LoginComponent";
 import {
   View,
   Platform,
@@ -33,6 +34,31 @@ const mapDispatchToProps = {
   fetchPromotions,
   fetchPartners,
 };
+
+const LoginNavigator = createStackNavigator(
+  {
+    Login: { screen: Login },
+  },
+  {
+    defaultNavigationOptions: ({ navigation }) => ({
+      headerStyle: {
+        backgroundColor: "#5637DD",
+      },
+      headerTintColor: "#fff",
+      headerTitleStyle: {
+        color: "#fff",
+      },
+      headerLeft: (
+        <Icon
+          name="sign-in"
+          type="font-awesome"
+          iconStyle={styles.stackIcon}
+          onPress={() => navigation.toggleDrawer()}
+        />
+      ),
+    }),
+  }
+);
 
 const ReservationNavigator = createStackNavigator(
   {
@@ -213,6 +239,19 @@ const CustomDrawerContentComponent = (props) => (
 
 const MainNavigator = createDrawerNavigator(
   {
+    Login: {
+      screen: LoginNavigator,
+      navigationOptions: {
+        drawerIcon: ({ tintColor }) => (
+          <Icon
+            name="sign-in"
+            type="font-awesome"
+            size={24}
+            color={tintColor}
+          />
+        ),
+      },
+    },
     Home: {
       screen: HomeNavigator,
       navigationOptions: {
@@ -279,6 +318,7 @@ const MainNavigator = createDrawerNavigator(
     },
   },
   {
+    initialRouteName: 'Home',
     drawerBackgroundColor: "#CEC8FF",
     contentComponent: CustomDrawerContentComponent,
   }
