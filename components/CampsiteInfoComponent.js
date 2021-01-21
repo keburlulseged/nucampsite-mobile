@@ -10,6 +10,7 @@ import {
   StyleSheet,
   Alert,
   PanResponder,
+  Share
 } from "react-native";
 import { connect } from "react-redux";
 import { baseUrl } from "../shared/baseUrl";
@@ -75,6 +76,15 @@ function RenderCampsite(props) {
     },
   });
 
+  const shareCampsite = (title, message, url) => {
+    Share.share({
+      title,
+      message: `${title}: ${message} ${url}`,
+      url,
+    }, {
+      dialogTitle: 'Share ' + title
+    })
+  }
 
 
   if (campsite) {
@@ -105,12 +115,20 @@ function RenderCampsite(props) {
               }
             ></Icon>
             <Icon
-              name="pencil"
+              name={"pencil"}
               type="font-awesome"
               color="#5637DD"
               raised
               reverse
               onPress={() => props.onShowModal()}
+            ></Icon>
+            <Icon
+              name={"share"}
+              type="font-awesome"
+              color="#5637DD"
+              raised
+              reverse
+              onPress={() => shareCampsite(campsite.name, campsite.description, baseUrl + campsite.image)}
             ></Icon>
           </View>
         </Card>
